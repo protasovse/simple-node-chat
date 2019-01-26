@@ -21,7 +21,7 @@
           <v-text-field
               @keydown.enter="sendMsg"
               name="input-1-1"
-              label="Enter message..."
+              label="type a message & press «enter»..."
               row="1"
               v-model="text"
           ></v-text-field>
@@ -42,9 +42,6 @@
       }
     },
     sockets: {
-      connect: () => {
-        console.log('socket connected')
-      },
       messageArrived: function (data) {
         this.messages.push(data)
       }

@@ -7,18 +7,21 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
+          v-if="!login"
           color="error"
           @click="asAdmin"
       >
         <span class="mr-2">As Admin</span>
       </v-btn>
       <v-btn
+          v-if="!login"
           color="accent"
           @click="asUser"
       >
         <span class="mr-2">As User</span>
       </v-btn>
       <v-btn
+          v-if="login"
           color="primary"
           @click="out"
       >
@@ -42,21 +45,24 @@
     },
     data () {
       return {
-        //
+        login: false
       }
     },
     methods: {
       asAdmin () {
         this.localStorage.user = 'Admin'
         this.$cookie.set('user', 'Admin')
+        this.login = true
       },
       asUser () {
         this.localStorage.user = 'User'
         this.$cookie.set('user', 'User')
+        this.login = true
       },
       out () {
         this.localStorage.user = 'non authorised'
         this.$cookie.delete('user')
+        this.login = false
       }
     },
     computed: {
