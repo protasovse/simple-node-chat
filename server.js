@@ -17,9 +17,14 @@ io.on('connection', client => {
   })
 })
 
-function getUserName (soket) {
+/**
+ * Возвращает имя пользователя из кук
+ * @param socket
+ * @returns {boolean || null}
+ */
+function getUserName (socket) {
   try {
-    let cookies = soket.handshake.headers['cookie']
+    let cookies = socket.handshake.headers['cookie']
     let m = cookies.match(/user=(\w+)/)
     return m[1]
   } catch (err) {

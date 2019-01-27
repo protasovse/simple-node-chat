@@ -15,13 +15,12 @@ npm i
 npm run serve
 ```
 
-Откройте в браузере: **[http://localhost:8080/](http://localhost:8080/)**
-
 
 #### Запустим сокет сервер
 Откройте новое окно терминала. В вашей системе должна быть установлена Node.JS
 
 ```bash
-cd ~/my_projects/simple-node-chat
-node server.js
+npm run chatServer
 ```
+
+Откройте в браузере: **[http://localhost:8080/](http://localhost:8080/)**

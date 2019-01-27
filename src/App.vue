@@ -7,21 +7,21 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
-          v-if="!chat"
+          v-if="!isLogged"
           color="error"
-          @click="asAdmin"
+          @click="login('Admin')"
       >
         <span class="mr-2">As Admin</span>
       </v-btn>
       <v-btn
-          v-if="!chat"
+          v-if="!isLogged"
           color="accent"
-          @click="asUser"
+          @click="login('User')"
       >
         <span class="mr-2">As User</span>
       </v-btn>
       <v-btn
-          v-if="chat"
+          v-if="isLogged"
           color="primary"
           @click="out"
       >
@@ -30,7 +30,7 @@
     </v-toolbar>
 
     <v-content>
-      <app-chat v-if="chat"/>
+      <app-chat v-if="isLogged"/>
     </v-content>
   </v-app>
 </template>
@@ -48,28 +48,20 @@
       }
     },
     methods: {
-      asAdmin () {
-        this.localStorage.user = 'Admin'
-        this.$cookie.set('user', 'Admin')
-        window.location.reload()
-      },
-      asUser () {
-        this.localStorage.user = 'User'
-        this.$cookie.set('user', 'User')
+      login (user) {
+        this.localStorage.user = user
+        this.$cookie.set('user', user)
         window.location.reload()
       },
       out () {
-        this.localStorage.user = 'non authorised'
+        this.localStorage.user = null
         this.$cookie.delete('user')
         window.location.reload()
       }
     },
     computed: {
-      user () {
-        return this.localStorage.user
-      },
-      chat () {
-        return this.user === 'Admin' || this.user === 'User'
+      isLogged () {
+        return !!this.localStorage.user
       },
     }
   }

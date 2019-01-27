@@ -15,7 +15,7 @@ Vue.use(new VueSocketIO({
 }))
 
 Vue.use(reactiveStorage, {
-  user: 'non authorised',
+  user: null,
 })
 
 Vue.use(VueCookie);
